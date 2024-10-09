@@ -1,0 +1,127 @@
+CREATE TABLE passageiro (
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(50) COLLATE utf8_bin NOT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY nome_UNIQUE (nome)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE onibus (
+  id int NOT NULL AUTO_INCREMENT,
+  placa varchar(50) COLLATE utf8_bin NOT NULL,
+  assentos_onibus varchar(55) COLLATE utf8_bin NOT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY placa_UNIQUE (placa)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE assento (
+  id int NOT NULL AUTO_INCREMENT,
+  id_onibus varchar(50) COLLATE utf8_bin NOT NULL,
+  num_do_assento varchar(55) COLLATE utf8_bin NOT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY num_do_assento_UNIQUE (num_do_assento)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE viagem (
+  id int NOT NULL AUTO_INCREMENT,
+  id_onibus varchar(50) COLLATE utf8_bin NOT NULL,
+  cidade_origem varchar(100) COLLATE utf8_bin NOT NULL,
+  data_saida varchar(10) COLLATE utf8_bin NOT NULL,
+  horário_saida varchar(5) COLLATE utf8_bin NOT NULL,
+  cidade_destino varchar(100) COLLATE utf8_bin NOT NULL,
+  data_chegada varchar(10) COLLATE utf8_bin NOT NULL,
+  prev_chegada varchar(5) COLLATE utf8_bin NOT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY id_onibus_UNIQUE (id_onibus)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE administrador (
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(50) COLLATE utf8_bin NOT NULL,
+  sexo varchar(10) COLLATE utf8_bin NOT NULL,
+  cpf varchar(14) COLLATE utf8_bin NOT NULL,
+  email varchar(100) COLLATE utf8_bin NOT NULL,
+  celular varchar(15) COLLATE utf8_bin NOT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY cpf_UNIQUE (cpf),
+  UNIQUE KEY email_UNIQUE (email),
+  UNIQUE KEY celular_UNIQUE (celular)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE vendedor (
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(50) COLLATE utf8_bin NOT NULL,
+  sexo varchar(10) COLLATE utf8_bin NOT NULL,
+  cpf varchar(14) COLLATE utf8_bin NOT NULL,
+  email varchar(100) COLLATE utf8_bin NOT NULL,
+  celular varchar(15) COLLATE utf8_bin NOT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY cpf_UNIQUE (cpf),
+  UNIQUE KEY email_UNIQUE (email),
+  UNIQUE KEY celular_UNIQUE (celular)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE usuario(
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(50) COLLATE utf8_bin NOT NULL,
+  sexo varchar(1) NOT NULL,
+  cpf varchar(14) NOT NULL,
+  email varchar(100) COLLATE utf8_bin NOT NULL,
+  senha varchar(255) COLLATE utf8_bin NOT NULL,
+  data_criacao date DEFAULT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY cpf_UNIQUE (cpf),
+  UNIQUE KEY email_UNIQUE (email),
+  UNIQUE KEY nome_UNIQUE (nome)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE assentos (
+  id int NOT NULL AUTO_INCREMENT,
+  id_onibus varchar(50) COLLATE utf8_bin NOT NULL,
+  num_de_assentos varchar(55) COLLATE utf8_bin NOT NULL,
+  ativo tinyint DEFAULT '1',
+  PRIMARY KEY (id),
+  UNIQUE KEY num_de_assentos_UNIQUE (num_de_assentos)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+INSERT INTO passageiro(nome, ativo) VALUES('Teresa Cristina', 1);
+INSERT INTO passageiro(nome, ativo) VALUES('Ana Carolina', 1);
+INSERT INTO passageiro(nome, ativo) VALUES('Fábio Santos', 1);
+INSERT INTO passageiro(nome, ativo) VALUES('Sandra Vieira', 1);
+INSERT INTO passageiro(nome, ativo) VALUES('Bruno Salomão', 1);
+INSERT INTO passageiro(nome, ativo) VALUES('Marcos Santana', 1);
+INSERT INTO onibus(placa, assentos_onibus, ativo) VALUES('HQKW-81569', 45, 1);
+INSERT INTO assento(id_onibus, num_do_assento, ativo) VALUES ('5', '39', 1 );
+INSERT INTO viagem(id_onibus, cidade_origem, data_saida, horário_saida, cidade_destino, data_chegada, prev_chegada,ativo) VALUES ('5', 'vitoria', '05/05/2005', '17:00', 'salvador', '06/05/2005', '13:00', 1);
+INSERT INTO administrador(nome, sexo,cpf,email,celular) VALUES ('Otávio Bruno', 'M', '899.832.247-20','otaviobruninho@gmail.com','(27)99910-0105');
+INSERT INTO vendedor(nome,sexo,cpf,email,celular) VALUES ('Mauricio Burgovas', 'M', '775.482.227-13','mauricinho@gmail.com','(25)94610-0258');
+INSERT INTO usuario(nome, sexo, cpf, email, senha, data_criacao, ativo) 
+VALUES('Teresa Cristina', 'F', '032.178.891-19', 'teresacristina@gmail.com','Teresa23', '2023-01-01', 1);
+INSERT INTO usuario(nome, sexo, cpf, email, senha, data_criacao, ativo)
+VALUES('Ana Carolina', 'F', '918.912.192-73', 'anacarolina@gmail.com', 'Ana2023', '2023-01-01', 1);
+INSERT INTO usuario(nome, sexo, cpf, email, senha, data_criacao, ativo)
+VALUES('Fábio Santos', 'M', '178.456.523-60', 'fabiosantos@gmail.com', 'Fabio23', '2023-01-01', 1);
+INSERT INTO usuario(nome, sexo, cpf, email, senha, data_criacao, ativo)
+VALUES('Sandra Vieira', 'F', '345.784.578-35', 'sandravieira@gmail.com', 'Sandra23', '2023-01-01', 1);
+INSERT INTO usuario(nome, sexo, cpf, email, senha, data_criacao, ativo) 
+VALUES('Bruno Salomão', 'M', '345.784.557-89', 'brunosalomão@gmail.com', 'Bruno23', '2023-01-01', 1);
+INSERT INTO usuario(nome, sexo, cpf, email, senha, data_criacao, ativo) 
+VALUES('Marcos Santana', 'M', '187.234.693-46', 'marcossantana@gmail.com', 'Marcos23', '2023-01-01', 1);
+INSERT INTO assentos(id_onibus, num_de_assentos, ativo) 
+VALUES ('1', '45', 1 );
+
+
+select * from passageiro;
+select * from onibus;
+select * from assento;
+select * from viagem;
+select * from administrador;
+select * from vendedor;
+select * from usuario;
+select * from assentos
